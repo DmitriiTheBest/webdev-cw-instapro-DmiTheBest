@@ -105,7 +105,7 @@ export const goToPage = (newPage, data) => {
       // posts = [];
       renderApp();
 
-      return fetchPostsUser(data.userId, { token: getToken() })
+      return fetchPostsUser({id: data.userId, token: getToken() })
         .then((newPosts) => {
           page = USER_POSTS_PAGE;
           posts = newPosts;

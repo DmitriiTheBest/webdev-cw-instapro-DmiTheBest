@@ -86,7 +86,7 @@ export const postPosts = ({ token, description, imageUrl }) => {
     },
   }).then((response) => {
     if (response.status === 500) {
-      throw new Error("Serer is broken");
+      throw new Error("Server is broken");
     } else if (response.status === 400) {
       throw new Error("Bad request");
     } else {
@@ -108,7 +108,7 @@ export const deletePost = (id, { token }) => {
 };
 
 // # получаем посты конкретного пользователя (юзера)
-export const fetchPostsUser = (id, { token }) => {
+export const fetchPostsUser = ({id, token }) => {
   return fetch(`${postsHost}/user-posts/${id}`, {
     method: "GET",
     headers: {
@@ -116,12 +116,10 @@ export const fetchPostsUser = (id, { token }) => {
     },
   })
     .then((response) => {
-      return response.json();
-    })
-    .then((response) => {
       if (response.status === 401) {
-        throw new Error("No authorization");
+        throw new Error("Нет авторизации");
       }
+
       return response.json();
     })
     .then((data) => {
@@ -130,7 +128,7 @@ export const fetchPostsUser = (id, { token }) => {
 };
 
 // # adding likes
-export const addLike = (id,{ token }) => {
+export const addLike = (id, { token }) => {
   return fetch(`${postsHost}/${id}/like`, {
     method: "POST",
     headers: {
@@ -144,8 +142,7 @@ export const addLike = (id,{ token }) => {
   });
 };
 
-
-// # removing likes 
+// # removing likes
 export const removeLike = (id, { token }) => {
   return fetch(`${postsHost}/${id}/dislike`, {
     method: "DELETE",
@@ -160,6 +157,5 @@ export const removeLike = (id, { token }) => {
     throw new Error("Only authorized users can remove likes");
   });
 };
-
 
 // API is ready
