@@ -176,7 +176,7 @@
   text-align: center;
 }
 
-.file-upload-image-conrainer {
+.file-upload-image-container {
   display: flex;
   align-items: center;
 }
@@ -196,3 +196,25 @@
   width: 100%;
   text-align: center;
 }
+
+.add-form__text {
+  resize: none;
+  width: 100%;    
+  box-sizing: border-box;
+  padding: 15px;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #e8e8e8;
+
+}
+.delete-button {
+display: block;
+}
+.post-block {
+display: flex;
+justify-content: space-between;
+}
+
+/* css is ready  */

@@ -24,26 +24,26 @@ export function renderAuthPageComponent({ appEl, setUser }) {
                     !isLoginMode
                       ? `
                       <div class="upload-image-container"></div>
-                      <input type="text" id="name-input" class="input" placeholder="Имя" />
+                      <input type="text" id="name-input" class="input" placeholder="Name" />
                       `
                       : ""
                   }
                   
-                  <input type="text" id="login-input" class="input" placeholder="Логин" />
-                  <input type="password" id="password-input" class="input" placeholder="Пароль" />
+                  <input type="text" id="login-input" class="input" placeholder="Username" />
+                  <input type="password" id="password-input" class="input" placeholder="Password" />
                   
                   <div class="form-error"></div>
                   
                   <button class="button" id="login-button">${
-                    isLoginMode ? "Войти" : "Зарегистрироваться"
+                    isLoginMode ? "Sign in" : "Sign up"
                   }</button>
               </div>
             
               <div class="form-footer">
                 <p class="form-footer-title">
-                  ${isLoginMode ? "Нет аккаунта?" : "Уже есть аккаунт?"}
+                  ${isLoginMode ? "Haven't got an account yet?" : "Have got an account?"}
                   <button class="link-button" id="toggle-button">
-                    ${isLoginMode ? "Зарегистрироваться." : "Войти."}
+                    ${isLoginMode ? "Sign up." : "Sign in."}
                   </button>
                 </p> 
                
@@ -60,14 +60,19 @@ export function renderAuthPageComponent({ appEl, setUser }) {
       appEl.querySelector(".form-error").textContent = message;
     };
 
-    renderHeaderComponent({
+    // в renderHeaderComponent передаем элемент, 
+    // в этот элемент отрендерит какой-то кусок разметки и 
+    // навесит на этот кусок обработчики событий
+    renderHeaderComponent({ // рендер шапки с логотипом и кнопкой входа и регистрации
       element: document.querySelector(".header-container"),
     });
 
     const uploadImageContainer = appEl.querySelector(".upload-image-container");
 
     if (uploadImageContainer) {
-      renderUploadImageComponent({
+      renderUploadImageComponent({ // рендер компонента выбора изображения
+        // в качестве аргумента передаем элемент, в котором будет отрендерен компонент 
+        // и функцию, которая будет вызвана при изменении изображения
         element: appEl.querySelector(".upload-image-container"),
         onImageUrlChange(newImageUrl) {
           imageUrl = newImageUrl;
@@ -83,12 +88,12 @@ export function renderAuthPageComponent({ appEl, setUser }) {
         const password = document.getElementById("password-input").value;
 
         if (!login) {
-          alert("Введите логин");
+          alert("Enter your username");
           return;
         }
 
         if (!password) {
-          alert("Введите пароль");
+          alert("Enter your password"); 
           return;
         }
 
@@ -108,21 +113,21 @@ export function renderAuthPageComponent({ appEl, setUser }) {
         const name = document.getElementById("name-input").value;
         const password = document.getElementById("password-input").value;
         if (!name) {
-          alert("Введите имя");
+          alert("Enter your name");
           return;
         }
         if (!login) {
-          alert("Введите логин");
+          alert("Enter your username");
           return;
         }
 
         if (!password) {
-          alert("Введите пароль");
+          alert("Enter your password");
           return;
         }
 
         if (!imageUrl) {
-          alert("Не выбрана фотография");
+          alert("Photo is not selected");
           return;
         }
 
@@ -150,3 +155,6 @@ export function renderAuthPageComponent({ appEl, setUser }) {
 
   renderForm();
 }
+
+
+// done
